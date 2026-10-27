@@ -191,6 +191,24 @@ def normalize_input(df: pd.DataFrame) -> pd.DataFrame:
     for column in normalized.columns:
         if is_text_column(normalized[column]):
             normalized[column] = normalized[column].map(_strip_text)
+    if "OperatingSystems" in normalized.columns:
+        normalized["OperatingSystems"] = pd.Categorical(
+            normalized["OperatingSystems"], categories=[1, 2, 3, 4, 5, 6, 7, 8]
+        )
+    if "Browser" in normalized.columns:
+        normalized["Browser"] = pd.Categorical(
+            normalized["Browser"], categories=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+        )
+    if "Region" in normalized.columns:
+        normalized["Region"] = pd.Categorical(
+            normalized["Region"], categories=[1, 2, 3, 4, 5, 6, 7, 8, 9]
+        )
+    if "TrafficType" in normalized.columns:
+        normalized["TrafficType"] = pd.Categorical(
+            normalized["TrafficType"],
+            categories=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+        )
+
     return normalized
 
 

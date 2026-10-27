@@ -16,7 +16,7 @@ powiązane, ale nie zawierają gotowych rozwiązań ani zadań do wykonania wcze
 
 | Pole | Wartość |
 |---|---|
-| Zespół i integrator Sprintu 1 | Hubert Łaszczyk, Michał Sadrzak, Jan Ebing (Integrator) |
+| Zespół i integrator Sprintu 1 | Hubert Łaszczyk, Michał Sadrzak, Jan Ebing (Integrator), Mateusz Głowacki |
 | Dataset (id z `docs/datasets.md`) | online_shoppers |
 | Źródło, licencja i cytowanie (DOI) | https://archive.ics.uci.edu/dataset/468/online+shoppers+purchasing+intention+dataset; CC BY 4.0; Sakar, C. & Kastro, Y. (2018). Online Shoppers Purchasing Intention Dataset [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5F88Q. |
 | Data pobrania danych | 2026-10-20T16:04:45+00:00 |
