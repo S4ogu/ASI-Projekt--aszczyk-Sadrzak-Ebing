@@ -33,7 +33,9 @@ w sklearn `Pipeline` z działającymi testami i CI.
 
 | Element sprintu | Owner | Recenzent |
 | --- | --- | --- |
-| _do uzupełnienia_ | | |
+| dataset, karta projektu i kontrakt danych | Hubert Łaszczyk | Michał Sadrzak |
+| input normalization, baseline and metrics | Michał Sadrzak | Jan Ebing |
+| testy CI, diagram v0 | Jan Ebing | Hubert Łaszczyk |
 
 Integrator sprintu: _do uzupełnienia_
 
