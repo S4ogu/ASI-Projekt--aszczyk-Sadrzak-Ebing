@@ -47,30 +47,34 @@ gotowy — sprawdza to `python scripts/check_dod.py`.
 
 <!-- DIAGRAM-V0:START -->
 ```mermaid
-flowchart LR
-    subgraph training["Trening modelu"]
-        uci["UCI: Online Shoppers"] --> raw["CSV: dane pełne / próbka CI"]
-        raw --> norm["Input normalization<br/>src/asi_project/data.py"]
-        norm --> filter["Training-only filtering<br/>brak targetu"]
-        filter --> split["Podział train / test<br/>stratified_random"]
-        split --> pipeline["sklearn Pipeline<br/>imputacja, skalowanie, OneHotEncoder<br/>+ LogisticRegression"]
-        pipeline --> metrics["Ocena modelu<br/>DummyClassifier vs LogisticRegression"]
-        pipeline -. "serializacja modelu (S3)" .-> artifact["Artefakt modelu"]
+flowchart TB
+    contract["Kontrakt danych<br/>datasets.yaml + project.yaml"]
+
+    subgraph training["Trening modelu (S1)"]
+        direction LR
+        uci["Dane z UCI"] --> raw["Pełny CSV<br/>lub próbka CI"]
+        raw --> norm["Input normalization"]
+        norm --> filter["Training-only filtering<br/>usunięcie rekordów bez targetu"]
+        filter --> split["Split train / test<br/>stratified_random"]
+        split --> pipeline["sklearn Pipeline<br/>imputacja, skalowanie,<br/>OneHotEncoder + LogisticRegression"]
+        pipeline --> metrics["Ocena<br/>DummyClassifier vs<br/>LogisticRegression"]
+        pipeline -. "serializacja (S3)" .-> artifact["Artefakt modelu"]
     end
 
-    contract["Kontrakt danych<br/>datasets.yaml + project.yaml"] -. "target, dozwolone cechy,<br/>typy i strategia splitu" .-> norm
+    contract -. "target, dozwolone cechy,<br/>typy, strategia splitu" .-> norm
     contract -.-> pipeline
 
-    subgraph serving["Predykcja — planowane S4–S5"]
-        employee["Pracownik sklepu"] --> ui["Formularz UI"]
+    subgraph serving["Predykcja (planowane S4 i S5)"]
+        direction LR
+        employee["Pracownik sklepu"] --> ui["Formularz"]
         ui --> api["API<br/>walidacja + input normalization"]
-        api --> model["Wczytany artefakt<br/>modelu"]
-        model --> response["Predykcja zakupu<br/>klasa + prawdopodobieństwo"]
+        api --> model["Model z artefaktu"]
+        model --> response["Wynik<br/>klasa + prawdopodobieństwo"]
         response --> ui
-        api --> state["Persistence<br/>zapis predykcji"]
+        api --> state["Persistence<br/>zapis wyniku"]
     end
 
-    artifact -. "wdrożenie artefaktu" .-> model
+    artifact -. "wdrożenie modelu" .-> model
     cloud["Cloud Run (S6)"] -. "wdrożenie" .-> api
     cloud -.-> ui
 
@@ -80,7 +84,7 @@ flowchart LR
     class artifact,employee,ui,api,model,response,state,cloud planned;
 ```
 
-W Sprincie 1 pobieramy dane z UCI, sprawdzamy je względem kontraktu, normalizujemy i usuwamy z danych treningowych rekordy bez targetu. Następnie dzielimy dane zgodnie ze strategią `stratified_random` i uczymy pipeline, w którym imputacja, skalowanie oraz kodowanie kategorii są dopasowywane razem z LogisticRegression. Obecny baseline porównujemy z DummyClassifier i oceniamy na zbiorze testowym. W kolejnych sprintach wytrenowany model będzie zapisywany jako artefakt i używany przez API wywoływane z formularza; API zwróci klasę i prawdopodobieństwo, a wynik będzie mógł zostać zapisany w persistence. Zielone elementy oznaczają zakres istniejący po Sprincie 1, a szare przerywane — planowane elementy systemu.
+W Sprincie 1 pobieramy dane z UCI, sprawdzamy je względem kontraktu, normalizujemy i usuwamy z danych treningowych rekordy bez targetu. Następnie dzielimy dane zgodnie ze strategią `stratified_random` i uczymy pipeline, w którym imputacja, skalowanie oraz kodowanie kategorii są dopasowywane razem z LogisticRegression. Obecny baseline porównujemy z DummyClassifier i oceniamy na zbiorze testowym. W kolejnych sprintach wytrenowany model będzie zapisywany jako artefakt i używany przez API wywoływane z formularza. API zwróci klasę i prawdopodobieństwo, a wynik będzie mógł zostać zapisany w persistence. Zielone elementy oznaczają zakres istniejący po Sprincie 1; szare i przerywane oznaczają elementy planowane.
 <!-- DIAGRAM-V0:END -->
 
 ## Historia zmian architektury
