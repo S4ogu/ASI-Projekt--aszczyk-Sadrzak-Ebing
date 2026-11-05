@@ -36,3 +36,6 @@ dist/
 .DS_Store
 Thumbs.db
 .idea/
+
+# Ignore all of venv
+/venv/
