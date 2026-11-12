@@ -66,6 +66,11 @@ jobs:
         if: always()
         run: python scripts/check_dod.py --sprint 1
 
+      - name: Install Sprint 2 dependencies
+        shell: bash -el {0}
+        run: |
+          python -m pip install -r requirements/preflight-s2.txt -c constraints.txt
+          python -c "import kedro; print(kedro.__version__)"
       # Future scaffold — kroki kolejnych sprintów (nieaktywne, dopisywane na starcie sprintu):
       # S2: kedro run --env ci (pipeline'y na próbce CI) i testy nodów (tests/pipelines/)
       # S3: WANDB_MODE=disabled, test zapisu i odczytu pakietu modelu
