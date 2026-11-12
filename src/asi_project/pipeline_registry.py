@@ -15,7 +15,6 @@ from asi_project.pipelines.data_science.pipeline import create_pipeline as ds_cr
 
 
 def register_pipelines() -> dict[str, Pipeline]:
-    """Rejestrujemy pipeline'y jawnie, żeby upewnić się, że __default__ nie jest pusty."""
     dp_pipeline = dp_create()
     ds_pipeline = ds_create()
 
