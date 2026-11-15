@@ -1,6 +1,11 @@
-# Sprint 2 — parametry pipeline'u.
-# TODO (zespół): dodaj test_size, random_state i inne parametry zgodne
-# z project.yaml oraz kontraktem wybranego datasetu.
+# Sprint 2 + Sprint 3 — parametry pipeline'u.
 split:
   test_size: 0.2
   random_state: 42
+
+model_type: baseline
+run_name: baseline_run
+model_params: {}
+wandb:
+  project: asi_project
+  mode: disabled
