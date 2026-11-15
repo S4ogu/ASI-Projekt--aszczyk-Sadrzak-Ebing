@@ -182,3 +182,31 @@ z tych elementów.
 Ogólną architekturę warstw opisuje [`docs/architecture.md`](docs/architecture.md).
 Przypięte instalacje kolejnych sprintów: `requirements/preflight-s2.txt` (Kedro, pod koniec S1)
 i `requirements/preflight-s3.txt` (W&B i AutoGluon, pod koniec S2).
+
+## Kedro quickstart
+
+Do wykonania w terminalu
+
+**Pobranie danych**:
+```bash
+python scripts/download_data.py
+```
+
+**Instalacja Kedro**:
+```bash
+python -m pip install -r requirements/preflight-s2.txt -c constraints.txt
+kedro info
+```
+
+**Wybór środowiska i przeprowadzenie treningu**:
+```bash
+kedro run
+```
+
+**Wytrenowany model**:
+
+ścieżka data/06_models/baseline.pkl
+
+**Metryki modelu**:
+
+ścieżka data/08_reporting/metrics.json

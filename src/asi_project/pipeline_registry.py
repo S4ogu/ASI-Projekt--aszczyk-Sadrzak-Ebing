@@ -1,11 +1,18 @@
 """Rejestrowanie pipeline'ów Kedro."""
 
-from kedro.framework.project import find_pipelines
 from kedro.pipeline import Pipeline
+
+from asi_project.pipelines.data_processing.pipeline import create_pipeline as dp_create
+from asi_project.pipelines.data_science.pipeline import create_pipeline as ds_create
 
 
 def register_pipelines() -> dict[str, Pipeline]:
-    """Wykryj pipeline'y i połącz je w pipeline domyślny."""
-    pipelines = find_pipelines()
-    pipelines["__default__"] = sum(pipelines.values())
-    return pipelines
+    """Zarejestruj pipeline'y nazwane i pipeline domyślny."""
+    dp_pipeline = dp_create()
+    ds_pipeline = ds_create()
+
+    return {
+        "__default__": dp_pipeline + ds_pipeline,
+        "data_processing": dp_pipeline,
+        "data_science": ds_pipeline,
+    }
