@@ -26,5 +26,22 @@ logiki (np. `normalize_input` działa identycznie w notebooku, w pipeline Kedro 
 | `model_package.py` | S3 | zapis i odczyt pakietu modelu: katalog z modelem i `metadata.json` (cechy, target i klasa pozytywna, metryki, git SHA, fingerprint danych, wersje bibliotek); wspólny dla Kedro, smoke modelu i API |
 | `api/` | S4 | usługa predykcji — patrz `api/README.md` |
 
+### Eksperymenty Sprintu 3
+
+Uruchamiaj każdy wariant osobnym poleceniem `kedro run`. Po zalogowaniu przez
+`wandb login` ustawiaj tryb W&B parametrem `wandb.mode=online`.
+Runy zapisują typ modelu, jego parametry, parametry splitu, Git SHA i fingerprint danych.
+
+```bash
+# Baseline
+kedro run --params="wandb.mode=online,model_type=baseline,run_name=baseline"
+
+# AutoGluon: medium quality
+kedro run --params="wandb.mode=online,model_type=autogluon,run_name=autogluon-medium,model_params.preset=medium_quality,model_params.time_limit=60"
+
+# AutoGluon: good quality
+kedro run --params="wandb.mode=online,model_type=autogluon,run_name=autogluon-good,model_params.preset=good_quality,model_params.time_limit=60"
+```
+
 Zasada: moduły aktywne w Sprincie 1 nie importują Kedro, W&B, AutoGluona, FastAPI ani innych
 bibliotek przyszłych sprintów. Pilnuje tego test w `tests/test_repo_hygiene.py`.
