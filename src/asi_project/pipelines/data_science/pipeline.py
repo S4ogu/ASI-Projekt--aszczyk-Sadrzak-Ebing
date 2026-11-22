@@ -1,6 +1,6 @@
 from kedro.pipeline import Pipeline, node
 
-from .nodes import evaluate_model, split_data, train_model
+from .nodes import evaluate_model, package_model, split_data, train_model
 
 
 def create_pipeline(**kwargs) -> Pipeline:
@@ -32,6 +32,18 @@ def create_pipeline(**kwargs) -> Pipeline:
                 ],
                 "metrics",
                 name="evaluate_model",
+            ),
+            node(
+                package_model,
+                [
+                    "model",
+                    "metrics",
+                    "params:model_type",
+                    "params:model_params",
+                    "params:package",
+                ],
+                "model_metadata",
+                name="package_model",
             ),
         ]
     )

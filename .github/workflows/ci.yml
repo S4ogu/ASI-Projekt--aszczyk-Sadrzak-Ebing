@@ -51,6 +51,11 @@ jobs:
           python -m pip install -r requirements/preflight-s2.txt -c constraints.txt
           python -c "import kedro; print(kedro.__version__)"
 
+      - name: Kedro run (pipeline'y na próbce CI)
+        env:
+          ASI_DATA_MODE: sample
+        run: kedro run --env ci
+
       - name: pytest
         run: pytest
 

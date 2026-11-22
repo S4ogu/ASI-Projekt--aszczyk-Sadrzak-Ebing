@@ -91,3 +91,23 @@ def test_evaluate_logs_model_split_and_provenance_parameters(monkeypatch):
         "git_sha": "test-sha",
         "dataset_fingerprint": "test-fingerprint",
     }
+
+
+def test_package_model_node_writes_package(monkeypatch, tmp_path):
+    from sklearn.dummy import DummyClassifier
+
+    monkeypatch.setattr(nodes, "_git_sha", lambda: "test-sha")
+    monkeypatch.setattr(nodes, "_dataset_fingerprint", lambda: "test-fingerprint")
+
+    model = DummyClassifier().fit(pd.DataFrame({"x": [0, 1]}), [0, 1])
+    metadata = nodes.package_model(
+        model,
+        {"f1": 0.5},
+        model_type="baseline",
+        model_params={},
+        package_params={"path": str(tmp_path / "pkg"), "model_name": None},
+    )
+
+    assert metadata["model_format"] == "sklearn-joblib"
+    assert metadata["git_sha"] == "test-sha"
+    assert (tmp_path / "pkg" / "metadata.json").is_file()
