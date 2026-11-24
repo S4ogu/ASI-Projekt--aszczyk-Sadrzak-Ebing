@@ -9,3 +9,6 @@ model_params: {}
 wandb:
   project: asi_project
   mode: disabled
+package:
+  path: data/06_models/production
+  model_name: null

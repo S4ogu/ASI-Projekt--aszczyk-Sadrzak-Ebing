@@ -10,6 +10,12 @@ from asi_project.config import DatasetContract, ProjectConfig, get_contract, loa
 from asi_project.data import make_xy, split_train_test
 from asi_project.metrics import compute_metrics
 from asi_project.model import build_baseline_pipeline
+from asi_project.model_package import (
+    FORMAT_AUTOGLUON,
+    FORMAT_SKLEARN,
+    build_metadata,
+    save_model_package,
+)
 
 try:  # pragma: no cover - optional dependency for Sprint 3
     import wandb  # type: ignore
@@ -177,3 +183,22 @@ def evaluate_model(
         wandb_params or {},
     )
     return metrics
+
+
+def package_model(model, metrics, model_type, model_params, package_params):
+    config, contract = _load_project()
+    model_format = FORMAT_AUTOGLUON if model_type == "autogluon" else FORMAT_SKLEARN
+    metadata = build_metadata(
+        model_type=model_type,
+        model_format=model_format,
+        features=list(config.model_features),
+        target=contract.target,
+        positive_class=contract.positive_class,
+        metrics=metrics,
+        git_sha=_git_sha(),
+        dataset_fingerprint=_dataset_fingerprint(),
+        model_name=package_params.get("model_name"),
+        model_parameters=model_params,
+    )
+    save_model_package(model, metadata, package_params["path"])
+    return metadata
