@@ -32,7 +32,7 @@ Ograniczenia danych (z `docs/datasets.md`):
 - Jedno źródło danych z okresu jednego roku więc sezonowość może się nie uogólnić
 
 Znane błędy i sytuacje, w których model zawodzi:
-- F1=0.39 oznacza że model często się myli bo klasa pozytywna jest rzadka (15.5% wszystkich sesji). 
+- F1=0.39 oznacza że model często się myli bo klasa pozytywna jest rzadka (15.5% wszystkich sesji).
 
 
 ## Wersje
