@@ -1,0 +1,58 @@
+_wandb:
+    value:
+        cli_version: 0.30.0
+        e:
+            kh5fsuqxbq951gwtkssxp388v8odv1h0:
+                args:
+                    - artifact
+                    - put
+                    - data/06_models/production
+                    - --name
+                    - asi-projekt-26/asi_project/production-model
+                    - --type
+                    - model
+                    - --alias
+                    - production
+                cpu_count: 8
+                cpu_count_logical: 16
+                cudaVersion: "13.5"
+                disk:
+                    /:
+                        total: "2047237681152"
+                        used: "1523646119936"
+                email: s27654@pjwstk.edu.pl
+                executable: C:\Users\herbi\.conda\envs\asi-ml\python.exe
+                git:
+                    commit: 037358c84f92fb71afbcb2b0d426db339adbdf50
+                    remote: https://github.com/S4ogu/ASI-Projekt--aszczyk-Sadrzak-Ebing.git
+                gpu: NVIDIA GeForce RTX 5070 Ti
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Blackwell
+                      cudaCores: 8960
+                      memoryTotal: "17094934528"
+                      name: NVIDIA GeForce RTX 5070 Ti
+                      uuid: GPU-49c5077a-6a29-ef4c-8aee-f898758f0814
+                host: herbi
+                memory:
+                    total: "68305207296"
+                os: Windows-10-10.0.26300-SP0
+                program: -m __main__
+                python: CPython 3.11.18
+                root: C:\Users\herbi\Desktop\ASI\ASI-Projekt--aszczyk-Sadrzak-Ebing
+                startedAt: "2026-11-24T22:48:36.008688Z"
+                writerId: kh5fsuqxbq951gwtkssxp388v8odv1h0
+        m: []
+        python_version: 3.11.18
+        t:
+            "3":
+                - 2
+                - 16
+            "4": 3.11.18
+            "5": 0.30.0
+            "8":
+                - 3
+            "12": 0.30.0
+            "13": windows-amd64
+path:
+    value: data/06_models/production

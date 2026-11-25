@@ -1,0 +1,49 @@
+{
+  "os":  "Windows-10-10.0.26300-SP0",
+  "python":  "CPython 3.11.18",
+  "startedAt":  "2026-11-24T22:48:36.008688Z",
+  "args":  [
+    "artifact",
+    "put",
+    "data/06_models/production",
+    "--name",
+    "asi-projekt-26/asi_project/production-model",
+    "--type",
+    "model",
+    "--alias",
+    "production"
+  ],
+  "program":  "-m __main__",
+  "git":  {
+    "remote":  "https://github.com/S4ogu/ASI-Projekt--aszczyk-Sadrzak-Ebing.git",
+    "commit":  "037358c84f92fb71afbcb2b0d426db339adbdf50"
+  },
+  "email":  "s27654@pjwstk.edu.pl",
+  "root":  "C:\\Users\\herbi\\Desktop\\ASI\\ASI-Projekt--aszczyk-Sadrzak-Ebing",
+  "host":  "herbi",
+  "executable":  "C:\\Users\\herbi\\.conda\\envs\\asi-ml\\python.exe",
+  "cpu_count":  8,
+  "cpu_count_logical":  16,
+  "gpu":  "NVIDIA GeForce RTX 5070 Ti",
+  "gpu_count":  1,
+  "disk":  {
+    "/":  {
+      "total":  "2047237681152",
+      "used":  "1523646119936"
+    }
+  },
+  "memory":  {
+    "total":  "68305207296"
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA GeForce RTX 5070 Ti",
+      "memoryTotal":  "17094934528",
+      "cudaCores":  8960,
+      "architecture":  "Blackwell",
+      "uuid":  "GPU-49c5077a-6a29-ef4c-8aee-f898758f0814"
+    }
+  ],
+  "cudaVersion":  "13.5",
+  "writerId":  "kh5fsuqxbq951gwtkssxp388v8odv1h0"
+}
