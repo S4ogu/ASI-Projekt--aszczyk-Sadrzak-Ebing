@@ -36,6 +36,16 @@ Znane błędy i sytuacje, w których model zawodzi:
 
 
 ## Wersje
-
-- Wersje bibliotek modelu i git SHA treningu:
-hash commitu gdzie wytrenowano model: `037358c84f92fb71afbcb2b0d426db339adbdf50`
+Wersje bibliotek modelu (z `metadata.json`) oraz git SHA treningu:
+```json
+  "git_sha": "d4fc1e9ab60c41406d2c1942129ad1b63afc1b4c",
+  "dataset_fingerprint": "b3055ee355f59134d851d32641183cb4a8b45def7124d2f50442a042f358e0d9",
+  "library_versions": {
+    "python": "3.11.18",
+    "scikit-learn": "1.7.2",
+    "pandas": "2.3.3",
+    "numpy": "2.2.6",
+    "autogluon.tabular": "1.6.3",
+    "joblib": "1.6.0"
+  },
+```
