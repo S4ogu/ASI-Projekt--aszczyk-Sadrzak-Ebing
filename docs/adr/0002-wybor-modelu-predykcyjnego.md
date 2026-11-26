@@ -3,7 +3,7 @@
 - **Status:** proponowany
 - **Sprint:** S3
 - **Autor:** Michał Sadrzak
-- **Recenzent:** imię i nazwisko (inna osoba niż autor)
+- **Recenzent:** Mateusz Głowacki
 
 ## Kontekst
 
@@ -37,11 +37,11 @@ Odrzucamy go, ponieważ jest gorszy od AutoGluon Good w każdym kryterium. Jest 
 
 ## Konsekwencje
 
-Wytrenowany model produkcyjny.
+- mały (2.18 mb) i szybki (6.6 ms vs 59 ms) model, łatwy do wdrożenia w API
 
 ## Historia
 
 | Data | Zmiana |
 |---|---|
 |17.11.2026 | utworzenie |
-|- | potwierdzenie |
+|25.11.2026 | potwierdzenie |
